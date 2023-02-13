@@ -1,0 +1,41 @@
+<h3 style="margin-left: 100px; margin-top: 15px; color:darkslateblue;">Ajouter un Nouveau Produit</h3>
+  <form style="margin-left: 50px;" [formGroup]="formproduit">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Nom : </label>
+        <input type="email" class="form-control" id="inputEmail4" placeholder="Nom du Produit" formControlName="nom"
+        [ngClass]="{'is-invalid':formproduit.get('nom')!.touched && !formproduit.get('nom')!.valid}"
+        >
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Prix : </label>
+        <input type="text" class="form-control" id="inputPassword4" placeholder="Prix" formControlName="prix"
+        [ngClass]="{'is-invalid':formproduit.get('prix')!.touched && !formproduit.get('prix')!.valid}"
+        >
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputAddress">Quantite : </label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="Quantite" formControlName="quantite"
+      [ngClass]="{'is-invalid':formproduit.get('quantite')!.touched && !formproduit.get('quantite')!.valid}">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputState">Categorie : </label>
+        <select id="inputState" class="form-control" formControlName="categorie"
+        [ngClass]="{'is-invalid':formproduit.get('categorie')!.touched && !formproduit.get('categorie')!.valid}" >
+          <option selected>Choose...</option>
+          <option>Informatique</option>
+          <option>Electroménagers</option>
+          <option>Téléphoniques</option>
+          
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="exampleFormControlFile1">Photo : </label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1" formControlName="photo">
+      </div>
+    </div>
+    
+    <button type="submit" style="margin-left: 150px; margin-top: 20px;" class="btn btn-success"  [disabled]=!formproduit.valid>Ajouter</button>
+  </form>
