@@ -18,9 +18,16 @@ export class ListeProduitComponent implements OnInit {
     this.produits!.push({id:5,nom:"Aspirateur", prix:450,quantite:5,photo:"assets/images/aspirateur.jpg",categorie:{id:2,nom:"Electroménagers"}});
     this.produits!.push({id:6,nom:"Souris ", prix:50,quantite:30,photo:"assets/images/souris.jpg",categorie:{id:1,nom:"Informatique"}});
     this.produits!.push({id:7,nom:"IPhone 13-Pro Max", prix:2800,quantite:0,photo:"assets/images/iphone.jpg",categorie:{id:3,nom:"Téléphonique"}});
-    this.produits!.push({id:8,nom:"Casque", prix:100,quantite:5,photo:"assets/images/casque.jpg",categorie:{id:1,nom:"Informatique"}});
+    this.produits!.push({id:8,nom:"Casque", prix:100,quantite:0,photo:"assets/images/casque.jpg",categorie:{id:1,nom:"Informatique"}});
     this.produits!.push({id:9,nom:"Unité Central ", prix:1150,quantite:18,photo:"assets/images/unite.jpg",categorie:{id:1,nom:"Informatique"}});
     this.produits!.push({id:10,nom:"Refrigèrateur ", prix:1150,quantite:0,photo:"assets/images/ref.jpg",categorie:{id:2,nom:"Electroménagers"}});
+    
+    
+    this.produits!.push({id:11,nom:"Scanner ", prix:550,quantite:30,photo:"assets/images/scanner.jpg",categorie:{id:1,nom:"Informatique"}});
+    this.produits!.push({id:12,nom:"Tablette", prix:800,quantite:0,photo:"assets/images/tab.jpg",categorie:{id:3,nom:"Téléphonique"}});
+    this.produits!.push({id:13,nom:"Gaz", prix:1100,quantite:5,photo:"assets/images/gaz.jpg",categorie:{id:2,nom:"Electroménagers"}});
+    this.produits!.push({id:14,nom:"Tel Fixe ", prix:650,quantite:18,photo:"assets/images/tel.jpeg",categorie:{id:3,nom:"Téléphonique"}});
+    this.produits!.push({id:15,nom:"fer a repasser", prix:940,quantite:0,photo:"assets/images/fer.jpg",categorie:{id:2,nom:"Electroménagers"}});
   }
   
   ngOnInit(): void {

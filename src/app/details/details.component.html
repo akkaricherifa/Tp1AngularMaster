@@ -1,86 +1,24 @@
-<!-- <div class="container">
-    <div class="main-body">
-          <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex flex-column align-items-center text-center">
-                    <img src="{{produit.photo}}" class="rounded-circle" width="200">
-                    <div class="mt-3">
-                      <h4></h4>
-                      <p class="text-secondary mb-1"></p>
-                      <p class="text-muted font-size-sm"></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="card mt-3">
-                <ul class="list-group list-group-flush">
-          </ul>
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Nom du Produit :</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      
-                        {{produit.nom}}
-            
-                    
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Prix :</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        {{produit.prix}}
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Description :</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Catégorie :</h6>
-                    </div>
-                    {{produit.categorie}}
-                  </div>
-                  <hr>
-                  
-                </div>
-              </div> -->
 
-              
+
+              <h5 style="margin-left: 250px;margin-top: 20px; color: blueviolet;">Détail d'un Produit</h5>
               <div>
              
                 
-                <div style="margin-top: 50px;margin-left: -300px;"> 
+                <div style="margin-top: 50px;margin-left: -390px;"> 
                 <table border="1" class="table table-light" style="width: 80%; margin: auto;">
                     <thead>
                         <tr>
-                            <td scope="col"><button class="btn btn-danger"></button></td>
+                            <td scope="col"><button (click)="afficher"  class="btn btn-danger">{{valeurB}}</button></td>
                             <td scope="col">ID</td>
                             <td scope="col">Nom</td>
                             <td scope="col">Prix</td>
                             <td scope="col">Qté</td>
-                            <!-- <td scope="col">Action</td> -->
+                        
                         </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                         <tr>
-                            <td scope="row" style="color: rgb(17, 16, 16);"><img  src={{produit.photo}} width="100" height="100"></td>
+                            <td scope="row" style="color: rgb(17, 16, 16);"><img *ngIf="valeurB=='masquer'" src={{produit.photo}} width="100" height="100"></td>
                             <td scope="row" style="color: rgb(15, 15, 15);">{{produit.id}}</td>
                             <td scope="row" style="color: rgb(24, 23, 23);">{{produit.nom  | uppercase}}</td>
                             <td scope="row" style="color: rgb(32, 30, 30);">{{produit.prix | currency:'TND ':'symbol':'2.2-2'}}</td>
