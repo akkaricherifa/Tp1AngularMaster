@@ -1,25 +1,3 @@
-<!-- <div class="row">
-    <div *ngFor="let p of produits" class="col-md-3 my">
-    <div class="card" style="width : 18rem;">
-    <img src="{{p.photo}}" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">
-            {{p.nom}}
-        </h5>
-        <h4>
-            {{p.prix}}
-
-        </h4>
-        <h6> 
-            [[ngStyle]="{color: 'green'}" *ngIf="p.quantite>0; else horstock"> En Stock  
-
-        </h6>
-    </div>
-    </div>
-  </div>
-</div> <ng-template #horstock> <h6
-     [ngStyle]="{color: 'red'}">Repture de Stock
-    </h6></ng-template> -->
 
 
     
@@ -29,8 +7,11 @@
     <h3 class="font-italic" style="margin-left: 170px; margin-top: 15px; color:darkslateblue;">Liste des Produits</h3>
     <input class="form-control" type="search"  placeholder="Search" aria-label="Search" style="margin-left: 700px; width: 200px; margin-top: -40px;"
     [(ngModel)]="texte" >
+   
 <body style="margin-top: 10px;">
+    <app-sidebar></app-sidebar>
     <div class="card-group" style="margin-left: -290px;">
+       
         <div *ngFor="let p of produitF |sort| paginate : {itemsPerPage: 5, currentPage: p}" class="col-md3 my-2">
             <div class="card" style="width: 15rem; height: 30rem;">
                 <img  class="card-img-top" src="{{p.photo}}" >
@@ -49,11 +30,11 @@
                   <a routerLink="/modifier"  class="btn btn-warning">
                     <span class="fa fa-edit"></span>
                 </a>
-                  <a routerLink="/detail"  class="btn btn-primary">
-                      <span class="fa fa-info"></span>
-                  </a>
+                <a routerLink="/detail/{{p.id}}"  class="btn btn-info">
+                    <span class="fa fa-info"></span>
+                </a>
                 </div>
-
+                
             </div>
 
         </div>

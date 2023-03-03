@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PiipePipe } from './piipe.pipe';
 import { SortPipe } from './sort.pipe';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { SortPipe } from './sort.pipe';
     ModifierProduitComponent,
     HomeComponent,
     PiipePipe,
-    SortPipe
+    SortPipe,
+    PagenotfoundComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
