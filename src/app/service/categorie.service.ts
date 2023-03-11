@@ -14,7 +14,9 @@ export class CategorieService {
   public getAllCategories(): Observable<Categorie[]>{
     return this.client.get<Categorie[]>(this.host+"/all");
 }
+
 public getProduitsBc(idc:number):Observable<Produit[]>{
   return this.client.get<Produit[]>(this.host+"/productsBC/"+idc)
 }
+
 }
