@@ -1,4 +1,4 @@
 export interface Categorie {
-    id:number;
+    idc:number;
     nom:string;
 }

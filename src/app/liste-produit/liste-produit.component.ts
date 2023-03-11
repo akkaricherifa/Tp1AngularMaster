@@ -63,11 +63,23 @@ public getProductsByCategory(idc:number){
     this.service.deleteProduct(id).subscribe( data => { 
       this.service.getAllProduit().subscribe(data=>{
         this.produits=data;
+        window.location.reload()
       })   
-    this.router.navigate(['/products']);  
     },
     )
   }
+
+  filterbycategorie(c){
+    if (c == "All") {
+      this.produitF = this.produits;
+    }else{
+
+      this.produitF = this.produits.filter((e)=> e.categorie.nom == c)
+    }
+    
+  }
+
+  
   // open(content:any) {
   //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
   //     this.closeResult = `Closed with: ${result}`;
@@ -97,5 +109,5 @@ public getProductsByCategory(idc:number){
       timer: 2000
     })
   }
-
+ 
 }

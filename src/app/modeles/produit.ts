@@ -6,5 +6,5 @@ export interface Produit {
     prix:number;
     quantite:number;
     photo:string;
-    categorie:Categorie
+    categorie:Categorie;
 }

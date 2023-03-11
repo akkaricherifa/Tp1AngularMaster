@@ -18,7 +18,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td scope="row" style="color: rgb(17, 16, 16);"><img *ngIf="valeurB=='masquer'" src={{produit.photo}} width="100" height="100"></td>
+                            <td scope="row" style="color: rgb(17, 16, 16);"><img *ngIf="valeurB=='masquer'" src="http://localhost:8080/produitapi/image/{{produit.id}}" width="100" height="100"></td>
                             <td scope="row" style="color: rgb(15, 15, 15);">{{produit.id}}</td>
                             <td scope="row" style="color: rgb(24, 23, 23);">{{produit.nom  | uppercase}}</td>
                             <td scope="row" style="color: rgb(32, 30, 30);">{{produit.prix | currency:'TND ':'symbol':'2.2-2'}}</td>

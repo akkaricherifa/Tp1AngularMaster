@@ -21,7 +21,11 @@ public getAllProduitsBC(idc:number):Observable<Produit[]>{
   }
 
   public deleteProduct(id:number):Observable<void>{
-    return this.client.delete<void>(this.host+"delete/"+id);
+    return this.client.delete<void>(this.host+"/delete/"+id);
   }
+
+  public getProductById(id:number):Observable<Produit>{
+    return this.client.get<Produit>(this.host+"/product/"+id);
+    }
 
 }
