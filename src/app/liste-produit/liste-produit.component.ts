@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Produit } from '../modeles/produit';
+import { ProduitService } from '../service/produit.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-liste-produit',
@@ -10,39 +14,88 @@ export class ListeProduitComponent implements OnInit {
   produits:Produit[]=[];
   produitF:Produit[]=[];
   p : number=1;
-  constructor(){
-    this.produits!.push({id:1,nom:"Pc Portable", prix:3800,quantite:12,photo:"assets/images/pc.jpg",categorie:{id:1,nom:"Informatique"}});
-    this.produits!.push({id:2,nom:"Imprimante", prix:650,quantite:0,photo:"assets/images/imprimante.jpg",categorie:{id:1,nom:"Informatique"}});
-    this.produits!.push({id:3,nom:"Smart Watch ", prix:750,quantite:30,photo:"assets/images/watch.jpg",categorie:{id:1,nom:"Informatique"}});
-    this.produits!.push({id:4,nom:"Machine à laver", prix:1200,quantite:0,photo:"assets/images/machine.jpg",categorie:{id:2,nom:"Electroménagers"}});
-    this.produits!.push({id:5,nom:"Aspirateur", prix:450,quantite:5,photo:"assets/images/aspirateur.jpg",categorie:{id:2,nom:"Electroménagers"}});
-    this.produits!.push({id:6,nom:"Souris ", prix:50,quantite:30,photo:"assets/images/souris.jpg",categorie:{id:1,nom:"Informatique"}});
-    this.produits!.push({id:7,nom:"IPhone 13-Pro Max", prix:2800,quantite:0,photo:"assets/images/iphone.jpg",categorie:{id:3,nom:"Téléphonique"}});
-    this.produits!.push({id:8,nom:"Casque", prix:100,quantite:0,photo:"assets/images/casque.jpg",categorie:{id:1,nom:"Informatique"}});
-    this.produits!.push({id:9,nom:"Unité Central ", prix:1150,quantite:18,photo:"assets/images/unite.jpg",categorie:{id:1,nom:"Informatique"}});
-    this.produits!.push({id:10,nom:"Refrigèrateur ", prix:1150,quantite:0,photo:"assets/images/ref.jpg",categorie:{id:2,nom:"Electroménagers"}});
-    
-    
-    this.produits!.push({id:11,nom:"Scanner ", prix:550,quantite:30,photo:"assets/images/scanner.jpg",categorie:{id:1,nom:"Informatique"}});
-    this.produits!.push({id:12,nom:"Tablette", prix:800,quantite:0,photo:"assets/images/tab.jpg",categorie:{id:3,nom:"Téléphonique"}});
-    this.produits!.push({id:13,nom:"Gaz", prix:1100,quantite:5,photo:"assets/images/gaz.jpg",categorie:{id:2,nom:"Electroménagers"}});
-    this.produits!.push({id:14,nom:"Tel Fixe ", prix:650,quantite:18,photo:"assets/images/tel.jpeg",categorie:{id:3,nom:"Téléphonique"}});
-    this.produits!.push({id:15,nom:"fer a repasser", prix:940,quantite:0,photo:"assets/images/fer.jpg",categorie:{id:2,nom:"Electroménagers"}});
-  }
+  closeResult = '';
+
+  public popoverTitle:string=' Alert De Confirmation';
+  public popoverMessage:string='Voulez Vous vraiment Supprimer cet Adhérent ?';
+  public confirmClicked:boolean=false;
+  public cancelClicked:boolean=false;
+  constructor(private ar:ActivatedRoute,private service:ProduitService , private router:Router){}
   
   ngOnInit(): void {
-    this.produitF=this.produits
-    
+    this.ar.paramMap.subscribe(params=>{
+      let exist=this.ar.snapshot.paramMap.has('idc')
+      if(!exist){
+      this.service.getAllProduit().subscribe(data=>{
+        this.produits=data;
+        this.produitF=this.produits;
+      })
+    }
+    else{
+      let idc: number=this.ar.snapshot.params['idc']
+      this.getProductsByCategory(idc);
   }
+})
+  }
+  public getAllProducts(){
+    this.service.getAllProduit().subscribe(data =>{
+    this.produits=data;
+    this.produitF=data;
+  })
+}
+public getProductsByCategory(idc:number){
+  this.service.getAllProduitsBC(idc).subscribe(data=>{
+  this.produits=data;
+  this.produitF=data;})
+}
 
   set texte(s:string){
     this.produitF=this.filtrer(s);
   } 
+
   filtrer(s:string){
     return this.produits.filter((el)=>el.nom.indexOf(s)!=-1)
   }
 
-  // filtrerCat(s:string){
-  //   return this.produits.filter((el)=>el.categorie.nom.indexOf(s)!=-1)
+
+
+  delete(id:any){
+    this.service.deleteProduct(id).subscribe( data => { 
+      this.service.getAllProduit().subscribe(data=>{
+        this.produits=data;
+      })   
+    this.router.navigate(['/products']);  
+    },
+    )
+  }
+  // open(content:any) {
+  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+  //     this.closeResult = `Closed with: ${result}`;
+  //   }, (reason) => {
+  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //   });
   // }
+
+  // private getDismissReason(reason: any): string {
+  //   if (reason === ModalDismissReasons.ESC) {
+  //     return 'by pressing ESC';
+  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+  //     return 'by clicking on a backdrop';
+  //   } else {
+  //     return `with: ${reason}`;
+  //   }
+   
+  // }
+
+
+  opensweetalert2(){
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Produit Supprimé avec Succès',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  }
+
 }

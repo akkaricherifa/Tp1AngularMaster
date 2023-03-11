@@ -17,6 +17,7 @@ const routes: Routes = [
   {path:"modifier",component:ModifierProduitComponent},
   {path:"home",component:HomeComponent},
   {path:"side-bar",component:SidebarComponent},
+  {path:"products/:idc",component:ListeProduitComponent},
 
   { path: '**', component:PagenotfoundComponent}
 

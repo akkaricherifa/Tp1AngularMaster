@@ -14,7 +14,7 @@
        
         <div *ngFor="let p of produitF |sort| paginate : {itemsPerPage: 5, currentPage: p}" class="col-md3 my-2">
             <div class="card" style="width: 15rem; height: 30rem;">
-                <img  class="card-img-top" src="{{p.photo}}" >
+                <img  class="card-img-top" src="http://localhost:8080/produitapi/image/{{p.id}}" >
                 <div class="card-body">
                     <h5 class="card-title" >{{p.nom|piipe:"":"-"}}</h5>
                     <h6>{{p.prix}} DT</h6>
@@ -22,16 +22,17 @@
                     <div class="card-footer">
                         <small class="text-muted">{{p.categorie.nom}}</small>
                       </div>
-                      <p style="margin-top: 10px; margin-left: 40px;">
-                        <a routerLink="/delet"  class="btn btn-danger">
-                            <span class="fa fa-trash"></span>
-                        </a>
+                      <p style="margin-top: 10px; margin-left: 40px;" >
+                        <button  type="button" (click)="delete(p.id);opensweetalert2()" class="btn btn-danger" > 
+                        <span class="fa fa-trash"></span>
+                      </button>
                    
                   <a routerLink="/modifier"  class="btn btn-warning">
                     <span class="fa fa-edit"></span>
                 </a>
                 <a routerLink="/detail/{{p.id}}"  class="btn btn-info">
                     <span class="fa fa-info"></span>
+                    
                 </a>
                 </div>
                 
